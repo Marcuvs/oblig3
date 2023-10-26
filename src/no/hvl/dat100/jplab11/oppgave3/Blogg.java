@@ -77,6 +77,9 @@ public class Blogg {
 	public String toString() {
 		
 		StringBuilder sb = new StringBuilder();
+		
+		sb.append("2");
+		sb.append("\n");
 		for (int i = 0; i < antall; i++) {
 		
 			sb.append(samling[i].toString());
@@ -96,10 +99,21 @@ public class Blogg {
 		samling = nyTab;
 	}
 	
+	
+	
 	public boolean leggTilUtvid(Innlegg innlegg) {
 
-		throw new UnsupportedOperationException(TODO.method());
-		
+		for (int i = 0; i < antall; i++) {
+			if(antall <samling.length || samling[i].ikkeLik(innlegg)) {
+				}
+			
+			else if(antall == samling.length || samling[i].ikkeLik(innlegg)) {
+				utvid();
+			}	
+		}
+		antall++;
+		samling[antall] = innlegg; 
+		return true;
 	}
 	
 	public boolean slett(Innlegg innlegg) {

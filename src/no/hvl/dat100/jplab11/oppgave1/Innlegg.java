@@ -65,6 +65,12 @@ public abstract class Innlegg {
 		
 	}
 	
+	
+	public boolean ikkeLik(Innlegg innlegg) {
+		
+		return (this.id != innlegg.id);
+	}
+	
 	public boolean erLik(Innlegg innlegg) {
 		
 		return (this.id == innlegg.id);
