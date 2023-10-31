@@ -4,10 +4,10 @@ import no.hvl.dat100.jplab11.common.TODO;
 
 public abstract class Innlegg {
 	
-	int id;
-	int likes;
-	String bruker;
-	String dato;
+	private int id;
+	private int likes;
+	private String bruker;
+	private String dato;
 	
 	public Innlegg() {
 		
@@ -52,6 +52,10 @@ public abstract class Innlegg {
 	public int getId() {
 		return id;
 
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public int getLikes() {

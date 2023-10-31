@@ -5,8 +5,8 @@ import no.hvl.dat100.jplab11.oppgave1.*;
 
 public class Blogg {
 	
-	public Innlegg[] samling;
-	public int antall;
+	private Innlegg[] samling;
+	private int antall;
 	
 
 	public Blogg() {	
@@ -45,7 +45,7 @@ public class Blogg {
 	public boolean finnes(Innlegg innlegg) {
 		
 		for (int i = 0; i < antall; i++) {
-			if(samling[i] != null && samling[i].equals(innlegg))
+			if(samling[i] != null && samling[i].getId() == innlegg.getId())
 			return true;
 		}
 			return false;
@@ -61,24 +61,22 @@ public class Blogg {
 	
 	public boolean leggTil(Innlegg innlegg) {
 
-		if(antall == samling.length) {
-			Innlegg [] nyTab = new Innlegg[2*samling.length];
-			for (int i = 0; i < antall; i++) {
+		for (int i = 0; i < antall; i++) {
 				
-				nyTab[i] = samling[i];
-			}
-			samling = nyTab;
+			if (samling[i].erLik(innlegg)) {
+				return false;
 		}
-		samling[antall] = innlegg;
-		antall++;
-		return true;
 	}
+	samling[antall] = innlegg;
+	antall++;
+	return true;
+}
 	
 	public String toString() {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("2");
+		sb.append(antall);
 		sb.append("\n");
 		for (int i = 0; i < antall; i++) {
 		
@@ -102,17 +100,16 @@ public class Blogg {
 	
 	
 	public boolean leggTilUtvid(Innlegg innlegg) {
-
+		
 		for (int i = 0; i < antall; i++) {
-			if(antall <samling.length || samling[i].ikkeLik(innlegg)) {
-				}
-			
-			else if(antall == samling.length || samling[i].ikkeLik(innlegg)) {
+			if(samling[i].ikkeLik(innlegg)) {
+				if(antall == samling.length) {
 				utvid();
+				}
 			}	
 		}
-		antall++;
 		samling[antall] = innlegg; 
+		antall++;
 		return true;
 	}
 	
@@ -120,7 +117,7 @@ public class Blogg {
 	    int fjerneIndex = -1;
 
 	    for (int i = 0; i < antall; i++) {
-	        if (samling[i].equals(innlegg)) {
+	        if (samling[i].erLik(innlegg)) {
 	            fjerneIndex = i;
 	            break;
 	        }
@@ -139,8 +136,15 @@ public class Blogg {
 
 	
 	public int[] search(String keyword) {
+		int[] ids = null;
+		int idsPlassering = 0;
 		
-		throw new UnsupportedOperationException(TODO.method());
-
+		for (int i = 0; i<antall; i++) {
+		if (this.samling.toString().contains(keyword)) {
+			ids[idsPlassering] = samling[i].getId();
+			idsPlassering++;
+			}
+		}
+		return ids;
 	}
 }
