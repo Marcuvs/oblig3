@@ -45,7 +45,7 @@ public class Blogg {
 	public boolean finnes(Innlegg innlegg) {
 		
 		for (int i = 0; i < antall; i++) {
-			if(samling[i] != null && samling[i].getId() == innlegg.getId())
+			if(samling[i] != null && samling[i].erLik(innlegg))
 			return true;
 		}
 			return false;

@@ -26,7 +26,7 @@ public class SkrivBlogg {
 	        writer.close();
 	        
 	    } catch (Exception e) {
-	        e.printStackTrace(); // Use proper error handling, print the exception stack trace
+	        System.out.println("Feil i navigering: " + e);
 	    return false;
 	    }
 	    return true;
